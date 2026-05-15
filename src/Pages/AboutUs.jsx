@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
 import Nexsus from "../Assets/Nexsus.jpg";
 import Technology from "../Assets/Technology.png";
@@ -10,10 +9,6 @@ import Web from "../Assets/Web.png";
 import Hub from "../Assets/Hub.png";
 
 export default function PoeageEcosystem() {
-  const navigate = useNavigate();
-  const [activeCompany, setActiveCompany] = useState(null);
-  const [activeProduct, setActiveProduct] = useState(null);
-
   const rotate = useMotionValue(0);
   const smoothRotate = useTransform(rotate, (r) => r % 360);
 
@@ -60,7 +55,7 @@ export default function PoeageEcosystem() {
             {companies.map((c, i) => (
               <div key={i} className="flex items-center gap-3 p-3 sm:p-4 rounded-xl border bg-gray-50">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-lg flex items-center justify-center p-1">
-                  <img src={c.img} className="w-full h-full object-contain" />
+                  <img src={c.img} alt={c.label} className="w-full h-full object-contain" />
                 </div>
                 <span className="text-xs sm:text-sm font-medium">{c.label}</span>
               </div>
@@ -106,10 +101,9 @@ export default function PoeageEcosystem() {
                   <motion.div
                     animate={{ rotate: -smoothRotate }}
                     whileHover={{ scale: 1.1 }}
-                    onClick={() => setActiveCompany(c)}
                   >
                     <div className="w-10 h-10 bg-white rounded-full shadow border flex items-center justify-center p-1">
-                      <img src={c.img} />
+                      <img src={c.img} alt={c.label} />
                     </div>
                   </motion.div>
                 </motion.div>
@@ -128,11 +122,10 @@ export default function PoeageEcosystem() {
           {companies.map((c, i) => (
             <div
               key={i}
-              onClick={() => setActiveCompany(c)}
               className="flex items-center gap-3 p-3 border rounded-xl bg-gray-50"
             >
               <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                <img src={c.img} />
+                <img src={c.img} alt={c.label} />
               </div>
               <span className="text-sm">{c.label}</span>
             </div>

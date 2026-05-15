@@ -135,14 +135,6 @@ export default function Home() {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const [navScrolled, setNavScrolled] = useState(false);
-
-  useEffect(() => {
-    const fn = () => setNavScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
-
   const companies = [
     { name: "Technologies", slug: "poeage-technologies", tag: "AI & Software",    desc: "AI-driven platforms and enterprise-grade software built for tomorrow's challenges." },
     { name: "Builders",     slug: "poeage-builders",     tag: "Infrastructure",   desc: "Civil and commercial construction at landmark scale." },
